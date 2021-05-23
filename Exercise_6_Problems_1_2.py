@@ -124,6 +124,11 @@ print('Average temperature (F) for the whole dataset:', round(avg_temp, 2))
 avg_temp_1969 = None
 
 # YOUR CODE HERE 8
+# Create new data that meets the conditions
+data_warmtemp_1969=data[(data['DATE'].astype(int)<19690831)&(data['DATE'].astype(int)>=19690500)]
+# Find the average of TMAX for that data
+avg_temp_1969=data_warmtemp_1969['TMAX'].astype(int).mean()
+
 
 #CAUTION!!! DON'T EDIT THIS PART START
 # This test print should print a number
