@@ -142,35 +142,35 @@ print('Average temperature (F) for the Summer of 69:', round(avg_temp_1969, 2))
 monthly_data = None
 
 # YOUR CODE HERE 9
-# Create a function
+# define the function to change the value
 def fahr_to_celcius(temp_fahrenheit):
   # Change from Fahrenheit to Celsius
   converted_temp=(temp_fahrenheit-32)/1.8
   # return the number
   return converted_temp
-# Apply a function to the data
-  data['TAVG']=data['TAVG'].apply(fahr_to_celcius)
-  # create the data frame
-  monthly_data=pd.DataFrame()
-  # Change to a string
-  data['TIME_STR']=data['DATE'].astype(str)
-  # Cut out each value
-  data['YEAR']=data['TIME_STR'].str.slice(start=0,stop=4)
-  # Cut out each value
-  data['MONTH']=data['TIME_STR'].str.slice(start=0,stop=6)
-  # Put together the data
-  grouped=data.groupby(['YEAR','MONTH'])
-  # Put a value
-  mean_col=['TAVG']
-  # for sentence
-  for key,group in grouped:
-    # get the mean of TAVG
-    mean_values=group[mean_col].mean()
-    # Add mean_value to monthly_data
-    monthly_data=monthly_data.append(mean_values,ignore_index=True)
-    new_name={'TAVG':'temp_celsius'}
-    # change the name
-    monthly_data=monthly_data.rename(columns=new_name)
+ # Apply a function to the data
+data['TAVG']=data['TAVG'].apply(fahr_to_celcius)
+# create the data frame
+monthly_data=pd.DataFrame()
+# Change datatype and use slice method to get the value that i want to get
+data['TIME_STR']=data['DATE'].astype(str)
+# Cut out each value
+data['YEAR']=data['TIME_STR'].str.slice(start=0,stop=4)
+# Cut out each value
+data['MONTH']=data['TIME_STR'].str.slice(start=4,stop=6)
+# Put together the data
+grouped=data.groupby(['YEAR','MONTH'])
+# Put a value
+mean_col=['TAVG']
+# calculate the average for all group's TAVG
+for key,group in grouped:
+  # get the mean of TAVG
+  mean_values=group[mean_col].mean()
+  # Add mean_value to monthly_data
+  monthly_data=monthly_data.append(mean_values,ignore_index=True)
+new_name={'TAVG':'temp_celsius'}
+  # change the name
+monthly_data=monthly_data.rename(columns=new_name)
 
 #CAUTION!!! DON'T EDIT THIS PART START,ignore_index=True
 # This test print should print the length of variable monthly_data
