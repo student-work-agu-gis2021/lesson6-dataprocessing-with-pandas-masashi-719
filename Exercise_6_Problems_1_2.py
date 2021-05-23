@@ -52,11 +52,11 @@ print('Number of no-data values in column "TAVG":',tavg_nodata_count)
 
 tmin_nodata_count = None
 #YOUR CODE HERE 3
-
+# TAVG is 9 th. so I write iloc[:,8] and tne number that i want yo find is NaN .so i added isnull and sum
 tmin_nodata_count=data.iloc[:,8].isnull().sum()
 # Calculate how many no-data (NaN) values there are for the TMIN column
 # calicurate the number of Nan in the TMIN clum
-# TAVG is 9 th. so I write iloc[:,8] and tne number that i want yo find is NaN .so i added isnull and sum
+
 #CAUTION!!! DON'T EDIT THIS PART START
 # Print out the solution:
 print('Number of no-data values in column "TMIN":', tmin_nodata_count)
