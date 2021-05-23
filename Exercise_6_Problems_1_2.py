@@ -11,12 +11,22 @@
 #     - Skip the second row
 #     - Convert the no-data values (`-9999`) into `NaN`
 
+
 import pandas as pd
-import numpy as np
+# import numpy as np
 
 data = None
 
 # YOUR CODE HERE 1
+# Put the data in a variable
+f="data/1091402.txt"
+# Read data according to conditions
+# 'delim_whitespace=True'　is use to separate spacce 'skiprows' use to skip the second row and 'na_values' use to  Convert the no-data values (-9999) into NaN
+data=pd.read_csv(f,delim_whitespace=True,skiprows=[1],na_values=[-9999])
+# Check that the dataframe looks ok:
+print(data.head())
+# Check the last rows of the data (there should be some NaN values)
+print(data.tail())
 
 # ### Part 2 
 # 
@@ -27,7 +37,9 @@ data = None
 
 tavg_nodata_count = None
 #YOUR CODE HERE 2
-
+# calicurate the number of Nan in the TAVG clum
+# TAVG is 7 th. so I write iloc[:,6] and tne number that i want yo find is NaN .so i added isnull and sum
+tavg_nodata_count=data.iloc[:,6].isnull().sum()
 
 #CAUTION!!! DON'T EDIT THIS PART START
 # Print out the solution:
@@ -41,6 +53,10 @@ print('Number of no-data values in column "TAVG":',tavg_nodata_count)
 tmin_nodata_count = None
 #YOUR CODE HERE 3
 
+tmin_nodata_count=data.iloc[:,8].isnull().sum()
+# Calculate how many no-data (NaN) values there are for the TMIN column
+# calicurate the number of Nan in the TMIN clum
+# TAVG is 9 th. so I write iloc[:,8] and tne number that i want yo find is NaN .so i added isnull and sum
 #CAUTION!!! DON'T EDIT THIS PART START
 # Print out the solution:
 print('Number of no-data values in column "TMIN":', tmin_nodata_count)
